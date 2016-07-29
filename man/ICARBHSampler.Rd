@@ -2,26 +2,24 @@
 % Please edit documentation in R/ICARBHSampler.R
 \name{ICARBHSampler}
 \alias{ICARBHSampler}
-\title{ICARBHSampler
- This function fits a piecewise hazard using a hierarchical model with a ICAR dependence applied to the hazard heights}
+\title{This function fits a piecewise hazard using a hierarchical model with a ICAR dependence applied to the hazard heights}
 \usage{
 ICARBHSampler(Y, I, B, hyper)
 }
 \arguments{
-\item{Y}{- This is a n-vector containing patient survival times}
+\item{Y}{This is a n-vector containing patient survival times}
 
-\item{I}{- This is a n-vector containing patient censoring indicators (0 for censored patient)}
+\item{I}{This is a n-vector containing patient censoring indicators (0 for censored patient)}
 
-\item{B}{- Number of iterations to run the sample}
+\item{B}{Number of iterations to run the sample}
 
-\item{hyper}{- Vector of hyperparameters. In order, this contains a1, b1 which are the inverse gamma hyperparameters on sigma^2. Phi which is the hyperparameter on the mean number of split points. Jmax which is the maximum allowed number of split points.  cl1 which is a tuning parameter greater than 0. J1 is the starting number of split points for the MCMC. Finally, clam1 which is between 0 and 1 and characterizes the spatial dependency of the baseline hazard heights.}
+\item{hyper}{Vector of hyperparameters. In order, this contains a1, b1 which are the inverse gamma hyperparameters on sigma^2. Phi which is the hyperparameter on the mean number of split points. Jmax which is the maximum allowed number of split points.  cl1 which is a tuning parameter greater than 0. J1 is the starting number of split points for the MCMC. Finally, clam1 which is between 0 and 1 and characterizes the spatial dependency of the baseline hazard heights.}
 }
 \value{
 Returns a list containing the posterior samples of the split points, split point locations, log hazard rates and hierarchical samples
 }
 \description{
-ICARBHSampler
- This function fits a piecewise hazard using a hierarchical model with a ICAR dependence applied to the hazard heights
+This function fits a piecewise hazard using a hierarchical model with a ICAR dependence applied to the hazard heights
 }
 \examples{
 ####This generates random survival data
@@ -45,6 +43,8 @@ ICARBHSampler
 
 }
 \references{
+https://adventuresinstatistics.wordpress.com/2016/07/29/bayespiecewiseicar-tutorial-and-details/
+
 Lee, K. H., Haneuse, S., Schrag, D. and Dominici, F. (2015), Bayesian semiparametric analysis of semicompeting risks data: investigating hospital readmission after a pancreatic cancer diagnosis. Journal of the Royal Statistical Society: Series C (Applied Statistics), 64: 253-273.
 }
 

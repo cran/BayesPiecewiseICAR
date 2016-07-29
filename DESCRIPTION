@@ -1,7 +1,7 @@
 Package: BayesPiecewiseICAR
 Type: Package
 Title: Hierarchical Bayesian Model for a Hazard Function
-Version: 0.1.0
+Version: 0.1.1
 Author: person("Andrew", "Chapple", email = "Andrew.G.Chapple@rice.edu", role = c("aut", "cre"))
 Maintainer: Andrew Chapple <Andrew.G.Chapple@rice.edu>
 Description: Fits a piecewise exponential hazard to survival data using a
@@ -19,6 +19,6 @@ LazyData: TRUE
 RoxygenNote: 5.0.1
 Depends: mvtnorm
 NeedsCompilation: no
-Packaged: 2016-07-27 15:16:18 UTC; Andrew
+Packaged: 2016-07-29 15:01:44 UTC; Andrew
 Repository: CRAN
-Date/Publication: 2016-07-27 19:00:54
+Date/Publication: 2016-07-29 18:31:47
