@@ -159,6 +159,88 @@ base_samp = function(Y,I,J1,lam1,s1,Sigma){
 
 
 
+  ##Shuffle
+if(J1>0){
+
+  for(M in 2:(J1+1)){
+    lam=lam1[is.na(lam1)==FALSE]
+
+    lambda=lam
+
+    s=s1
+    spot=s[M]
+    s[M]=runif(1,s[M-1],s[M+1])
+    if(s[M]<spot){
+      lam[M]=((s[M]-spot)*lam[M]+(spot-s[M-1])*lam[M-1])/(s[M]-s[M-1]);
+    }else{
+      lam[M-1]=((s[M+1]-spot)*lam[M]+(spot-s[M-1])*lam[M-1])/(s[M+1]-s[M]);
+    }
+
+
+    ## Make InvS2
+
+
+
+    W1=matrix(rep(0,(J1+1)*(J1+1)),nrow=J1+1)
+    Q1=matrix(rep(0,(J1+1)*(J1+1)),nrow=J1+1)
+
+
+    length1=diff(s[!(is.na(s))])
+
+
+    if(J1<2){
+      if(J1==1){
+        W1[1,2]=(clam1*(length1[1]+length1[2]))/(2*length1[1]+length1[2])
+        W1[J1+1,J1]=(clam1*(length1[J1+1]+length1[J1]))/(length1[J1]+2*length1[J1+1])
+        Q1[1,1]=2/(2*length1[1]+length1[2])
+        Q1[J1+1,J1+1]=2/(length1[J1]+2*length1[J1+1])
+        SigLam2=solve(diag(J1+1)-W1)%*%Q1
+
+
+
+
+
+      }else{
+
+        SigLam2=as.matrix(1)
+      }
+    }else{
+
+
+      for(j in 2:J1){
+        W1[j,j-1]=(clam1*(length1[j]+length1[j-1]))/(length1[j-1]+2*length1[j]+length1[j+1])
+        W1[j,j+1]=(clam1*(length1[j]+length1[j+1]))/(length1[j-1]+2*length1[j]+length1[j+1])
+        Q1[j,j]=2/(length1[j-1]+2*length1[j]+length1[j+1])
+      }
+
+
+      Q1[J1+1,J1+1]=2/(length1[J1]+2*length1[J1+1])
+      Q1[1,1]=2/(2*length1[1]+length1[2])
+      W1[1,2]=(clam1*(length1[1]+length1[2]))/(2*length1[1]+length1[2])
+      W1[J1+1,J1]=(clam1*(length1[J1+1]+length1[J1]))/(length1[J1]+2*length1[J1+1])
+
+
+      SigLam2=solve(diag(J1+1)-W1)%*%Q1
+
+    }
+
+
+
+    Do1= dmvnorm(lambda,  rep(Mu,J1+1),  Sig*SigLam1)+LK(Y,I,J1,s1,lam1)
+    Dn1= dmvnorm(lam,  rep(Mu,J1+1),  Sig*SigLam2)+LK(Y,I,J1,s,lam)
+
+
+    if(U<Dn1-Do1)
+    {
+      s1=s;
+      lam1[1:(J1+1)]=lam;
+      SigLam1=SigLam2;
+    }
+  }
+
+}
+
+
   ###BD
 
 
